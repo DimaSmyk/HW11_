@@ -4,9 +4,20 @@ import java.util.*;
 
 public class EnterSort {
 
+    private static List<String> list = new ArrayList<>();
+    private static Map<String, Integer> map = new HashMap<>();
+
     public static void main(String[] args) {
+        scScan();
+        checkRepeat(list);
+        twoMaxValue(map);
+    }
+
+    public static void scScan() {
+
+        System.out.println("Enter some repeat lines: ");
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> list = new ArrayList<>();
+        //List<String> list = new ArrayList<>();
         while (true) {
             String s = sc.nextLine();
             if (s.isEmpty()) {
@@ -14,7 +25,9 @@ public class EnterSort {
             }
             list.add(s);
         }
-        Map<String, Integer> map = new HashMap<>();
+    }
+    public static void checkRepeat(List<String> list) {
+
         for (String s : list) {
             if (map.containsKey(s)) {
 
@@ -23,33 +36,21 @@ public class EnterSort {
                 map.put(s, 1);
             }
         }
-        //System.out.println(map);
+        System.out.println(map);
+    }
 
-        int max = (Collections.max(map.values()));
-        int secondMax = (Collections.max(map.values()));
+    public static void twoMaxValue(Map<String,Integer> map) {
 
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            if (entry.getValue() > max) {
+        int value = 0;
+        String max = "";
+        String secondMax = "";
+
+        for (Map.Entry<String, Integer> ent : map.entrySet()) {
+            if (ent.getValue() >= value) {
+                value = ent.getValue();
                 secondMax = max;
-                max = entry.getValue();
-                System.out.println();
-
-            } else if (entry.getValue() > secondMax && entry.getValue() < max) {
-                secondMax = entry.getValue();
+                max = ent.getKey();
             }
-            //System.out.println(entry.getKey());
-        }
-        if (secondMax == (Collections.max(map.values()))) {
-            System.out.println(" s");
-        }else {
-            System.out.println("sec" + secondMax);
-        }
-//        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-//            if (entry.getValue() == maxValue) {
-//                System.out.println(entry.getKey());
-//
-//            }
-//        }
-
+        }System.out.println("First max value: " + max + "\nSecond max value: " + secondMax);
     }
 }
