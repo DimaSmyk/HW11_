@@ -22,16 +22,34 @@ public class EnterSort {
             } else {
                 map.put(s, 1);
             }
-
         }
-        System.out.println(map);
+        //System.out.println(map);
 
-        int maxValue = (Collections.max(map.values()));
+        int max = (Collections.max(map.values()));
+        int secondMax = (Collections.max(map.values()));
 
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            if (entry.getValue() == maxValue) {
-                System.out.println(entry.getKey());
+            if (entry.getValue() > max) {
+                secondMax = max;
+                max = entry.getValue();
+                System.out.println();
+
+            } else if (entry.getValue() > secondMax && entry.getValue() < max) {
+                secondMax = entry.getValue();
             }
+            //System.out.println(entry.getKey());
         }
+        if (secondMax == (Collections.max(map.values()))) {
+            System.out.println(" s");
+        }else {
+            System.out.println("sec" + secondMax);
+        }
+//        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+//            if (entry.getValue() == maxValue) {
+//                System.out.println(entry.getKey());
+//
+//            }
+//        }
+
     }
 }
